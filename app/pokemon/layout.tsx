@@ -8,7 +8,7 @@ import {
 } from './types'
 
 const defaultSearchParams: PokemonSearchInterface = {
-  limit: 16,
+  limit: 10,
   offset: 0,
   search: '',
   filterBy: {

@@ -3,12 +3,9 @@ import { useContext } from 'react'
 import { PokemonContext } from '../pokemon/layout'
 
 const options = [
-  { value: 4, label: '4' },
-  { value: 8, label: '8' },
-  { value: 12, label: '12' },
-  { value: 16, label: '16' },
-  { value: 24, label: '24' },
-  { value: 48, label: '48' },
+  { value: 10, label: '10' },
+  { value: 20, label: '20' },
+  { value: 50, label: '50' },
 ]
 
 export default function Pagination() {
