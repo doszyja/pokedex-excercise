@@ -28,7 +28,7 @@ export const filterData = (
 
     const maxWeight = filterBy?.weight?.max
     if (maxWeight !== undefined) {
-      shouldStay = pokemon.weight >= maxWeight
+      shouldStay = pokemon.weight <= maxWeight
     }
 
     return shouldStay

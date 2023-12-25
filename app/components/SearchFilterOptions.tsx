@@ -24,7 +24,6 @@ export default function SearchFilterOptions() {
   )
 
   useEffect(() => {
-    
     if (searchParams?.filterBy && setFilterOptions) {
       setFilterOptions(searchParams?.filterBy)
     }
@@ -33,11 +32,16 @@ export default function SearchFilterOptions() {
   const onSubmit = () => {
     setIsOpen(!isOpen)
 
-    if (setSearchParams) {
-      setSearchParams({
+    const copySearchParams = JSON.parse(
+      JSON.stringify({
         ...searchParams,
+        offset: 0,
         filterBy: filterOptions,
-      })
+      }),
+    )
+
+    if (setSearchParams) {
+      setSearchParams(copySearchParams)
     }
   }
 
@@ -54,10 +58,13 @@ export default function SearchFilterOptions() {
                 name="heightMin"
                 type="number"
                 onChange={(e) => {
+                  const newValue = parseInt(e.target.value)
+                  const parsedNewValue = isNaN(newValue) ? undefined : newValue
+
                   const newOptions = {
                     ...filterOptions,
                   }
-                  newOptions.height.min = parseInt(e.target.value)
+                  newOptions.height.min = parsedNewValue
                   setFilterOptions(newOptions)
                 }}
                 value={filterOptions.height.min}
@@ -70,10 +77,12 @@ export default function SearchFilterOptions() {
                 name="heightMax"
                 type="number"
                 onChange={(e) => {
+                  const newValue = parseInt(e.target.value)
+                  const parsedNewValue = isNaN(newValue) ? undefined : newValue
                   const newOptions = {
                     ...filterOptions,
                   }
-                  newOptions.height.max = parseInt(e.target.value)
+                  newOptions.height.max = parsedNewValue
                   setFilterOptions(newOptions)
                 }}
                 value={filterOptions.height.max}
@@ -87,10 +96,13 @@ export default function SearchFilterOptions() {
                 name="heightMin"
                 type="number"
                 onChange={(e) => {
+                  const newValue = parseInt(e.target.value)
+                  const parsedNewValue = isNaN(newValue) ? undefined : newValue
+
                   const newOptions = {
                     ...filterOptions,
                   }
-                  newOptions.weight.min = parseInt(e.target.value)
+                  newOptions.weight.min = parsedNewValue
                   setFilterOptions(newOptions)
                 }}
                 value={filterOptions.weight.min}
@@ -103,10 +115,13 @@ export default function SearchFilterOptions() {
                 name="heightMax"
                 type="number"
                 onChange={(e) => {
+                  const newValue = parseInt(e.target.value)
+                  const parsedNewValue = isNaN(newValue) ? undefined : newValue
+
                   const newOptions = {
                     ...filterOptions,
                   }
-                  newOptions.weight.max = parseInt(e.target.value)
+                  newOptions.weight.max = parsedNewValue
                   setFilterOptions(newOptions)
                 }}
                 value={filterOptions.weight.max}

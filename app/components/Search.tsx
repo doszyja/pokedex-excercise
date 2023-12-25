@@ -18,16 +18,6 @@ export default function Search() {
       ...searchParams,
       search: searchValue,
       offset: 0,
-      filterBy: {
-        height: {
-          min: undefined,
-          max: undefined,
-        },
-        weight: {
-          min: undefined,
-          max: undefined,
-        },
-      },
     })
   }
 

@@ -60,7 +60,7 @@ export default function SearchSortOptions() {
             }
           }}
         >
-          <option disabled value={undefined}>
+          <option value={undefined}>
             -
           </option>
           {options.map((option) => (

@@ -18,6 +18,11 @@ export async function POST(request: NextRequest) {
       })
     }
 
+    console.log(
+      `skip ${offset}, take ${limit} search ${search} orderBy: ${orderBy}, filterBy: ${JSON.stringify(
+        filterBy,
+      )}`,
+    )
     const dataWithoutLimit = await prisma.pokemon.findMany({
       skip: offset,
       where: {
@@ -32,7 +37,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       data,
-      isNextPage: dataWithoutLimit?.length > 0 && dataWithoutLimit?.length > limit,
+      isNextPage:
+        dataWithFiltering?.length > 0 && dataWithFiltering?.length > limit,
       isPreviousPage: offset >= limit,
     })
   } catch (error) {
