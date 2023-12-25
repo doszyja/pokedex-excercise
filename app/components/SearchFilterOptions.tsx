@@ -1,10 +1,8 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PokemonContext } from '../pokemon/layout'
 import { PokemonFilterByInterface } from '../pokemon/types'
-
-
 
 export default function SearchFilterOptions() {
   const defaultSortValues = {
@@ -21,13 +19,19 @@ export default function SearchFilterOptions() {
   const { searchParams, setSearchParams } = useContext(PokemonContext)
 
   const [isOpen, setIsOpen] = useState(false)
-  const [filterOptions, setFilterOptions] =
-    useState<PokemonFilterByInterface>(JSON.parse(JSON.stringify(defaultSortValues)))
+  const [filterOptions, setFilterOptions] = useState<PokemonFilterByInterface>(
+    JSON.parse(JSON.stringify(defaultSortValues)),
+  )
+
+  useEffect(() => {
+    
+    if (searchParams?.filterBy && setFilterOptions) {
+      setFilterOptions(searchParams?.filterBy)
+    }
+  }, [])
 
   const onSubmit = () => {
     setIsOpen(!isOpen)
-
-    setFilterOptions(defaultSortValues)
 
     if (setSearchParams) {
       setSearchParams({

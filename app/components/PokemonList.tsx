@@ -20,20 +20,26 @@ export default function PokemonList() {
   if (error) return <div>Error</div>
   if (isLoading) return <Loading />
 
+  const hasResults = data && data.data?.length > 0
+
   return (
     <section className="container p-3 my-0 mx-auto">
-      <div className="grid gap-4 grid-cols-4 max-w-3xl my-0 mx-auto">
-        {data?.data.map((pokemon: PokemonInterface) => {
-          return (
-            <Pokemon
-              name={pokemon.name}
-              image={pokemon.image}
-              key={pokemon.id}
-              id={pokemon.id}
-            />
-          )
-        })}
-      </div>
+      {hasResults ? (
+        <div className="grid gap-4 grid-cols-4 max-w-3xl my-0 mx-auto">
+          {data?.data.map((pokemon: PokemonInterface) => {
+            return (
+              <Pokemon
+                name={pokemon.name}
+                image={pokemon.image}
+                key={pokemon.id}
+                id={pokemon.id}
+              />
+            )
+          })}
+        </div>
+      ) : (
+        <h2>No results</h2>
+      )}
     </section>
   )
 }

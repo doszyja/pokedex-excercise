@@ -13,12 +13,12 @@ const defaultSearchParams: PokemonSearchInterface = {
   search: '',
   filterBy: {
     height: {
-      min: 0,
-      max: 0,
+      min: undefined,
+      max: undefined,
     },
     weight: {
-      min: 0,
-      max: 0,
+      min: undefined,
+      max: undefined,
     },
   },
   sortBy: {},
