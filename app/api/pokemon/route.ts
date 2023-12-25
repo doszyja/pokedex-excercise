@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
 
   try {
     const orderBy = []
-
     const sortField = sortBy.value ?? ''
     if (['weight', 'height', 'name'].includes(sortField)) {
       orderBy.push({
@@ -32,7 +31,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       data,
       isNextPage: dataWithoutLimit?.length > limit,
-      isPreviousPage: offset > limit
+      isPreviousPage: offset >= limit
     })
   } catch (error) {
     console.error(error)

@@ -16,7 +16,7 @@ export default function Pagination() {
     useContext(PokemonContext)
   const { limit, offset } = searchParams
 
-  const isPreviousPage = offset > limit
+  const isPreviousPage = offset >= limit
   const onNextPage = () => {
     if (setPage) setPage(limit)
   }

@@ -1,10 +1,9 @@
 import useSWR, { SWRResponse } from 'swr'
-import { fetcher } from '../utils/fetcher'
-
 import {
   GetAllPokemonsResponseInterface,
   PokemonSearchInterface,
 } from '../pokemon/types'
+import { fetcher } from '../utils/fetcher'
 
 export default function usePokemons(
   searchParams: PokemonSearchInterface,
@@ -12,5 +11,4 @@ export default function usePokemons(
   return useSWR(searchParams ? ['/api/pokemon', searchParams] : null, (args) =>
     fetcher(args[0], JSON.stringify(args[1])),
   )
-  // return useSWR('/api/pokemon', (url) => fetcher(url, body))
 }

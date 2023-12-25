@@ -12,7 +12,7 @@ export default function PokemonList() {
   const { data, error, isLoading } = usePokemons(searchParams)
 
   useEffect(() => {
-    if (data?.isNextPage && setIsNextPage) {
+    if (setIsNextPage && data?.isNextPage !== undefined) {
       setIsNextPage(data?.isNextPage)
     }
   }, [data?.isNextPage, setIsNextPage])
