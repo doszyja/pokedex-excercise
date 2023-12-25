@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { PokemonSearchInterface } from '@/app/pokemon/types'
+import { filterData } from '@/app/utils/filterData'
 
 export async function POST(request: NextRequest) {
   const prisma = new PrismaClient()
@@ -24,14 +25,15 @@ export async function POST(request: NextRequest) {
           contains: search,
         },
       },
-      orderBy: orderBy
+      orderBy: orderBy,
     })
-    const data = dataWithoutLimit.slice(0, limit + 1)
+    const dataWithFiltering = filterData(dataWithoutLimit, filterBy)
+    const data = dataWithFiltering.slice(0, limit)
 
     return NextResponse.json({
       data,
-      isNextPage: dataWithoutLimit?.length > limit,
-      isPreviousPage: offset >= limit
+      isNextPage: dataWithoutLimit?.length > 0 && dataWithoutLimit?.length > limit,
+      isPreviousPage: offset >= limit,
     })
   } catch (error) {
     console.error(error)

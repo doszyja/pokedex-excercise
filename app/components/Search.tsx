@@ -1,11 +1,15 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PokemonContext } from '../pokemon/layout'
 
 export default function Search() {
   const { searchParams, setSearchParams } = useContext(PokemonContext)
   const [searchValue, setSearchValue] = useState('')
+
+  useEffect(() => {
+    if (searchParams.search) setSearchValue(searchParams.search)
+  }, [])
 
   const onSubmit = () => {
     if (!setSearchParams) return
@@ -13,6 +17,17 @@ export default function Search() {
     setSearchParams({
       ...searchParams,
       search: searchValue,
+      offset: 0,
+      filterBy: {
+        height: {
+          min: undefined,
+          max: undefined,
+        },
+        weight: {
+          min: undefined,
+          max: undefined,
+        },
+      },
     })
   }
 

@@ -11,8 +11,8 @@ export interface GetAllPokemonsResponseInterface {
 export interface PokemonInterface {
   id: number
   name: string
-  weight: string
-  height: string
+  weight: number
+  height: number
   image: string
 }
 
@@ -23,12 +23,12 @@ export interface PokemonSortByInterface {
 
 export interface PokemonFilterByInterface {
   height: {
-    min: number
-    max: number
+    min: number | undefined
+    max: number | undefined
   }
   weight: {
-    min: number
-    max: number
+    min: number | undefined
+    max: number | undefined
   }
 }
 
